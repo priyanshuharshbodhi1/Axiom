@@ -45,7 +45,7 @@ function DesktopSidebar() {
     ) || routes[0];
 
   return (
-    <div className="hidden relative md:block min-w-[50px] max-w-[50px] h-screen overflow-hidden w-full bg-primary/5 dark:bg-secondary/30 dark:text-foreground text-muted-foreground border-r-2 border-separate ">
+    <div className="hidden relative md:block min-w-[50px] max-w-[50px] h-screen overflow-hidden w-full dark:text-foreground text-muted-foreground border-r-2 border-separate ">
       <div className="flex flex-col items-center justify-center h-full bg-primary/5 dark:bg-secondary/30 border-r-2 border-separate px-2 py-4 space-y-4">
         {routes.map((route) => (
           <Link
