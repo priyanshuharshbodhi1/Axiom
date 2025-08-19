@@ -1,6 +1,5 @@
 "use client";
 
-// import Logo from "@/components/Logo";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -46,26 +45,19 @@ function DesktopSidebar() {
     ) || routes[0];
 
   return (
-    <div className="hidden relative md:block min-w-[280px] max-w-[280px] h-screen overflow-hidden w-full bg-primary/5 dark:bg-secondary/30 dark:text-foreground text-muted-foreground border-r-2 border-separate ">
-      <div className="flex items-center justify-center gap-2 border-b-[1px] border-separate p-4">
-        {/* <Logo /> */}
-      </div>
-      <div className="p-2">
-      </div>
-      <div className="flex flex-col p-2">
+    <div className="hidden relative md:block min-w-[50px] max-w-[50px] h-screen overflow-hidden w-full bg-primary/5 dark:bg-secondary/30 dark:text-foreground text-muted-foreground border-r-2 border-separate ">
+      <div className="flex flex-col items-center justify-center h-full bg-primary/5 dark:bg-secondary/30 border-r-2 border-separate px-2 py-4 space-y-4">
         {routes.map((route) => (
           <Link
             key={route.href}
             href={`/${route.href}`}
             className={buttonVariants({
-              variant:
-                activeRoute.href === route.href
-                  ? "sidebarActiveItem"
-                  : "sidebarItem",
+              variant: activeRoute.href === route.href ? "sidebarActiveItem" : "sidebarItem",
+              size: "icon",
             })}
+            title={route.label}
           >
             <route.icon size={20} />
-            {route.label}
           </Link>
         ))}
       </div>
@@ -83,40 +75,31 @@ export function MobileSidebar() {
     ) || routes[0];
 
   return (
-    <div className="block border-separate bg-background md:hidden">
-      <nav className="container flex items-center justify-between px-8">
-        <Sheet open={isOpen} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button variant={"ghost"} size={"icon"}>
-              <MenuIcon />
-            </Button>
-          </SheetTrigger>
-          <SheetContent
-            className="w-[400px] sm:w-[540px] space-y-4"
-            side={"left"}
-          >
-            <Logo />
-            <div className="flex flex-col gap-1">
-              {routes.map((route) => (
-                <Link
-                  key={route.href}
-                  href={`/${route.href}`}
-                  className={buttonVariants({
-                    variant:
-                      activeRoute.href === route.href
-                        ? "sidebarActiveItem"
-                        : "sidebarItem",
-                  })}
-                  onClick={() => setOpen((prev) => !prev)}
-                >
-                  <route.icon size={20} />
-                  {route.label}
-                </Link>
-              ))}
-            </div>
-          </SheetContent>
-        </Sheet>
-      </nav>
+    <div className="block md:hidden fixed top-0 left-0 z-50">
+      <Sheet open={isOpen} onOpenChange={setOpen}>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon" className="m-2">
+            <MenuIcon />
+          </Button>
+        </SheetTrigger>
+        <SheetContent className="w-[280px] space-y-4" side="left">
+          <div className="flex flex-col gap-1">
+            {routes.map((route) => (
+              <Link
+                key={route.href}
+                href={`/${route.href}`}
+                className={buttonVariants({
+                  variant: activeRoute.href === route.href ? "sidebarActiveItem" : "sidebarItem",
+                })}
+                onClick={() => setOpen(false)}
+              >
+                <route.icon size={20} />
+                {route.label}
+              </Link>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
