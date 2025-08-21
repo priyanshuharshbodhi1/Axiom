@@ -1,8 +1,10 @@
 "use client";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-
-
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { WorkflowExecutionStatus, WorkflowStatus } from "@/types/workflow";
+import { Workflow } from "@prisma/client";
 import {
   ChevronRightIcon,
   ClockIcon,
@@ -26,14 +28,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 import TooltipWrapper from "@/components/TooltipWrapper";
 import { useState } from "react";
-
+import DeleteWorkflowDialog from "@/app/(dashboard)/workflows/_components/DeleteWorkflowDialog";
+import RunBtn from "@/app/(dashboard)/workflows/_components/RunBtn";
+import SchedulerDialog from "@/app/(dashboard)/workflows/_components/SchedulerDialog";
 import { Badge } from "@/components/ui/badge";
-
+import ExecutionStatusIndicator, {
+  ExecutionStatusLabel,
+} from "@/app/workflow/runs/[workflowId]/_components/ExecutionStatusIndicator";
 import { format, formatDistanceToNow } from "date-fns";
 import { formatInTimeZone } from "date-fns-tz";
+import DuplicateWorkflowDialog from "@/app/(dashboard)/workflows/_components/DuplicateWorkflowDialog";
 
+const statusColors = {
+  [WorkflowStatus.DRAFT]: "bg-yellow-400 text-yellow-600",
+  [WorkflowStatus.PUBLISHED]: "bg-primary",
+};
 
-
+function WorkflowCard({ workflow }: { workflow: Workflow }) {
+  const isDraft = workflow.status === WorkflowStatus.DRAFT;
 
   return (
     <Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30 group/card">
@@ -42,7 +54,7 @@ import { formatInTimeZone } from "date-fns-tz";
           <div
             className={cn(
               "w-10 h-10 rounded-full flex items-center justify-center",
-
+              statusColors[workflow.status as WorkflowStatus]
             )}
           >
             {isDraft ? (
