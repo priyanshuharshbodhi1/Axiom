@@ -15,6 +15,10 @@ export async function AgentExecutor(
   environment: ExecutionEnvironment<typeof AgentTask>
 ): Promise<boolean> {
   try {
+    const systemPrompt = environment.getInput("System Prompt");
+    if (!systemPrompt) {
+      environment.log.error("input->systemPrompt not defined");
+    }
 
     const prompt = environment.getInput("Prompt");
     if (!prompt) {
@@ -40,11 +44,19 @@ export async function AgentExecutor(
       plugins: [coingecko({ apiKey: process.env.COINGECKO_API_KEY as string })],
     });
 
+    const message = context ? context + "\n\n" + prompt : prompt;
+
+
+    environment.log.info(`Messages: ${message}`);
+
     const response = await generateText({
-      model: google('gemini-2.0-pro-exp-02-05'),
+      model: google('gemini-2.0-flash-001'),
       tools: tools,
       maxSteps: 5,
-      prompt: prompt,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: message },
+      ],
     });
 
     const result = response.text;

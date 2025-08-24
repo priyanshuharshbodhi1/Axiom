@@ -13,6 +13,12 @@ export const AgentTask = {
   credits: 2,
   inputs: [
     {
+      name: "System Prompt",
+      type: TaskParamType.STRING,
+      required: true,
+      variant: "textarea",
+  },
+    {
         name: "Context",
         type: TaskParamType.STRING,
         required: false,
