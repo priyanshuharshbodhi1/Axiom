@@ -5,10 +5,10 @@ import { http } from "viem";
 import { sepolia } from "viem/chains";
 import { createWalletClient } from "viem";
 import { getOnChainTools } from "@goat-sdk/adapter-vercel-ai";
-import { coingecko } from "@goat-sdk/plugin-coingecko";
 import { viem } from "@goat-sdk/wallet-viem";
 import { generateText } from "ai";
 import { google } from '@ai-sdk/google';
+import { pluginRegistry } from "@/lib/goat-plugins/pluginRegistry";
 
 
 export async function AgentExecutor(
@@ -41,7 +41,7 @@ export async function AgentExecutor(
 
     const tools = await getOnChainTools({
       wallet: viem(walletClient as any),
-      plugins: [coingecko({ apiKey: process.env.COINGECKO_API_KEY as string })],
+      plugins: plugins?.map(pluginId => pluginRegistry[pluginId as keyof typeof pluginRegistry]) || [],
     });
 
     const message = context ? context + "\n\n" + prompt : prompt;

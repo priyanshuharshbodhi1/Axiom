@@ -3,58 +3,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-
-interface Plugin {
-  id: string;
-  name: string;
-  description: string;
-  icon: string;
-  category: string;
-  isInstalled?: boolean;
-}
-
-const dummyPlugins: Plugin[] = [
-  {
-    id: "google-search",
-    name: "Google Search",
-    description: "Search the web using Google's search engine",
-    icon: "🔍",
-    category: "Search",
-    isInstalled: true
-  },
-  {
-    id: "weather-api",
-    name: "Weather API",
-    description: "Get real-time weather information for any location",
-    icon: "🌤️",
-    category: "Weather",
-    isInstalled: false
-  },
-  {
-    id: "calculator",
-    name: "Calculator",
-    description: "Perform complex mathematical calculations",
-    icon: "🧮",
-    category: "Tools",
-    isInstalled: false
-  },
-  {
-    id: "translator",
-    name: "Translator",
-    description: "Translate text between multiple languages",
-    icon: "🌐",
-    category: "Language",
-    isInstalled: true
-  },
-  {
-    id: "calendar",
-    name: "Calendar",
-    description: "Manage and schedule events and appointments",
-    icon: "📅",
-    category: "Productivity",
-    isInstalled: false
-  }
-];
+import { pluginStore } from "@/lib/goat-plugins/pluginStore";
 
 interface PluginStoreModalProps {
   isOpen: boolean;
@@ -87,7 +36,7 @@ function PluginStoreModal({ isOpen, onClose, plugins, onPluginUpdate }: PluginSt
           <DialogTitle>Plugin Store</DialogTitle>
         </DialogHeader>
         <div className="grid grid-cols-1 gap-4 mt-2">
-          {dummyPlugins.map((plugin) => (
+          {pluginStore.map((plugin) => (
             <div
               key={plugin.id}
               className={`flex items-center space-x-4 p-4 rounded-lg border hover:bg-gray-900 cursor-pointer ${
