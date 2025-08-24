@@ -11,6 +11,7 @@ import { ReadPropertyFromJsonExecutor } from "@/lib/workflow/executor/ReadProper
 import { ScrollToElementExecutor } from "@/lib/workflow/executor/ScrollToElementExecutor";
 import { WaitForElementExecutor } from "@/lib/workflow/executor/WaitForElementExecutor";
 import { InputTextExecutor } from "@/lib/workflow/executor/InputTextExecutor";
+import { AgentExecutor } from "@/lib/workflow/executor/AgentExecutor";
 import { ExecutionEnvironment } from "@/types/executor";
 import { TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
@@ -24,6 +25,7 @@ type RegistryType = {
 };
 
 export const ExecutorRegistry: RegistryType = {
+  AGENT: AgentExecutor,
   INPUT_TEXT: InputTextExecutor,
   LAUNCH_BROWSER: LaunchBrowserExecutor,
   PAGE_TO_HTML: PageToHtmlExecutor,

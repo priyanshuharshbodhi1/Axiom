@@ -25,6 +25,7 @@ export default function TaskMenu() {
           "timing",
           "results",
           "storage",
+          "agents",
         ]}
       >
         <AccordionItem value="interactions">
@@ -37,6 +38,14 @@ export default function TaskMenu() {
             <TaskMenuBtn taskType={TaskType.FILL_INPUT} />
             <TaskMenuBtn taskType={TaskType.CLICK_ELEMENT} />
             <TaskMenuBtn taskType={TaskType.SCROLL_TO_ELEMENT} />
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="agents">
+          <AccordionTrigger className="font-bold">
+            Agents
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-1">
+            <TaskMenuBtn taskType={TaskType.AGENT} />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="extraction">
