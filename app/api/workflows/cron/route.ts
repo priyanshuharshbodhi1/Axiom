@@ -21,7 +21,6 @@ export async function GET(req: Request) {
 }
 
 function triggerWorkflow(workflowId: string) {
-  console.log("TRIGGERED CRON")
   const triggerApiUrl = getAppUrl(
     `api/workflows/execute?workflowId=${workflowId}`
   );

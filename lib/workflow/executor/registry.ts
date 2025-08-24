@@ -10,6 +10,7 @@ import { PageToHtmlExecutor } from "@/lib/workflow/executor/PageToHtmlExecutor";
 import { ReadPropertyFromJsonExecutor } from "@/lib/workflow/executor/ReadPropertyFromJsonExecutor";
 import { ScrollToElementExecutor } from "@/lib/workflow/executor/ScrollToElementExecutor";
 import { WaitForElementExecutor } from "@/lib/workflow/executor/WaitForElementExecutor";
+import { InputTextExecutor } from "@/lib/workflow/executor/InputTextExecutor";
 import { ExecutionEnvironment } from "@/types/executor";
 import { TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
@@ -23,6 +24,7 @@ type RegistryType = {
 };
 
 export const ExecutorRegistry: RegistryType = {
+  INPUT_TEXT: InputTextExecutor,
   LAUNCH_BROWSER: LaunchBrowserExecutor,
   PAGE_TO_HTML: PageToHtmlExecutor,
   EXTRACT_TEXT_FROM_ELEMENT: ExtractTextFromElementExecutor,

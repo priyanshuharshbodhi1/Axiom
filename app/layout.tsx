@@ -1,9 +1,16 @@
-"use client"
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import {PrivyProvider} from '@privy-io/react-auth';
 import "./globals.css";
+import { AppProviders } from "@/components/providers/AppProviders";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "ScrapeFlow",
+  description: "ScrapeFlow",
+};
 
 export default function RootLayout({
   children,
@@ -11,25 +18,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-      <PrivyProvider
-      appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
-      config={{
-        appearance: {
-          theme: 'dark',
-          accentColor: '#0BDA51',
-          logo: 'https://your-logo-url',
-        },
-        // Create embedded wallets for users who don't have a wallet
-        embeddedWallets: {
-          createOnLogin: 'users-without-wallets',
+    <ClerkProvider
+      afterSignOutUrl={"/sign-in"}
+      appearance={{
+        elements: {
+          formButtonPrimary:
+            "bg-primary hover:bg-primary/90 text-sm !shadow-none",
         },
       }}
     >
-        {children}
-        </PrivyProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <AppProviders>{children}</AppProviders>
         </body>
-    </html>
+        <Toaster richColors />
+      </html>
+    </ClerkProvider>
   );
 }

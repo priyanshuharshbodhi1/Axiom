@@ -10,6 +10,7 @@ import { PageToHtmlTask } from "@/lib/workflow/task/PageToHtml";
 import { ReadPropertyFromJsonTask } from "@/lib/workflow/task/ReadPropertyFromJson";
 import { ScrollToElementTask } from "@/lib/workflow/task/ScrollToElement";
 import { WaitForElementTask } from "@/lib/workflow/task/WaitForElement";
+import { InputTextTask } from "@/lib/workflow/task/InputText";
 import { TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 
@@ -18,6 +19,7 @@ type Registry = {
 };
 
 export const TaskRegistry: Registry = {
+  INPUT_TEXT: InputTextTask,
   LAUNCH_BROWSER: LaunchBrowserTask,
   PAGE_TO_HTML: PageToHtmlTask,
   EXTRACT_TEXT_FROM_ELEMENT: ExtractTextFromElementTask,

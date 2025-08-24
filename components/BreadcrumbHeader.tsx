@@ -1,6 +1,6 @@
 "use client";
 
-// import { MobileSidebar } from "@/components/Sidebar";
+import { MobileSidebar } from "@/components/Sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,6 +8,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Link } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from "react";
 
@@ -16,7 +17,7 @@ function BreadcrumbHeader() {
   const paths = pathName === "/" ? [""] : pathName?.split("/");
   return (
     <div className="flex items-center flex-start">
-      {/* <MobileSidebar /> */}
+      <MobileSidebar />
       <Breadcrumb>
         <BreadcrumbList>
           {paths.map((path, index) => (
