@@ -161,7 +161,7 @@ async function executeWorkflowPhase(
     },
   });
 
-  const creditsRequired = 0;
+  const creditsRequired = TaskRegistry[node.data.type].credits;
 
   let success = await decrementCredits(userId, creditsRequired, logCollector);
   const creditsConsumed = success ? creditsRequired : 0;
