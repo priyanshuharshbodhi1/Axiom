@@ -1,8 +1,15 @@
-import { symmetricDecrypt } from "@/lib/encryption";
-import prisma from "@/lib/prisma";
 import { AgentTask } from "@/lib/workflow/task/AgentTask";
 import { ExecutionEnvironment } from "@/types/executor";
-import OpenAI from "openai";
+import { privateKeyToAccount } from "viem/accounts";
+import { http } from "viem";
+import { sepolia } from "viem/chains";
+import { createWalletClient } from "viem";
+import { getOnChainTools } from "@goat-sdk/adapter-vercel-ai";
+import { coingecko } from "@goat-sdk/plugin-coingecko";
+import { viem } from "@goat-sdk/wallet-viem";
+import { generateText } from "ai";
+import { google } from '@ai-sdk/google';
+
 
 export async function AgentExecutor(
   environment: ExecutionEnvironment<typeof AgentTask>
@@ -17,28 +24,30 @@ export async function AgentExecutor(
     const context = environment.getInput("Context");
     environment.log.info(`Context: ${context}`);
 
-    // const openai = new OpenAI({
-    //   apiKey: plainCredentialValue,
-    // });
+    const plugins = environment.getPlugin();
+    environment.log.info(`Plugins: ${plugins}`);
 
-    // const response = await openai.chat.completions.create({
-    //   model: "gpt-4o-mini",
-    //   messages: [
-    //     {
-    //       role: "system",
-    //       content:
-    //         "You are a webscraper helper that extracts data from HTML or text. You will be given a piece of text or HTML content as input and also the prompt with the data you have to extract. The response should always be only the extracted data as a JSON array or object, without any additional words or explanations. Analyze the input carefully and extract data precisely based on the prompt. If no data is found, return an empty JSON array. Work only with the provided content and ensure the output is always a valid JSON array without any surrounding text",
-    //     },
-    //     {
-    //       role: "user",
-    //       content: content,
-    //     },
-    //     { role: "user", content: prompt },
-    //   ],
-    //   temperature: 1,
-    // });
+    const account = privateKeyToAccount(process.env.WALLET_PRIVATE_KEY as `0x${string}`);
 
-    const result = prompt;
+    const walletClient = createWalletClient({
+      account: account,
+      transport: http(process.env.RPC_PROVIDER_URL),
+      chain: sepolia,
+    });
+
+    const tools = await getOnChainTools({
+      wallet: viem(walletClient as any),
+      plugins: [coingecko({ apiKey: process.env.COINGECKO_API_KEY as string })],
+    });
+
+    const response = await generateText({
+      model: google('gemini-2.0-pro-exp-02-05'),
+      tools: tools,
+      maxSteps: 5,
+      prompt: prompt,
+    });
+
+    const result = response.text;
     if (!result) {
       environment.log.error("empty response from AI");
       return false;

@@ -25,10 +25,6 @@ function NodePlugin({
   const currentPlugins = node?.data.plugins || [];
   const task = TaskRegistry[taskType];
 
-  if (!task.isAgent) {
-    return null;
-  }
-
   const openPluginStore = () => setModalOpen(true);
   const closePluginStore = () => setModalOpen(false);
 
@@ -37,6 +33,10 @@ function NodePlugin({
       plugins: plugins,
     });
   }, [nodeId, updateNodeData, node?.data.plugins]);
+
+  if (!task.isAgent) {
+    return null;
+  }
 
   const displayPlugins = currentPlugins.length > 0 ? currentPlugins : task.plugins || [];
 
