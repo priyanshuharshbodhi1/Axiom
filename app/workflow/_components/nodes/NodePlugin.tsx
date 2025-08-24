@@ -8,6 +8,9 @@ import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { TaskType } from "@/types/task";
 import { PlusIcon, PuzzleIcon } from "lucide-react";
 import PluginStoreModal from "./PluginStoreModal";
+import { useReactFlow } from "@xyflow/react";
+import { useCallback } from "react";
+import { AppNode } from "@/types/appNode";
 
 function NodePlugin({
   taskType,
@@ -16,8 +19,10 @@ function NodePlugin({
   taskType: TaskType;
   nodeId: string;
 }) {
+  const { updateNodeData, getNode } = useReactFlow();
+  const node = getNode(nodeId) as AppNode;
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedPlugins, setSelectedPlugins] = useState<string[]>([]);
+  const currentPlugins = node?.data.plugins || [];
   const task = TaskRegistry[taskType];
 
   if (!task.isAgent) {
@@ -27,13 +32,13 @@ function NodePlugin({
   const openPluginStore = () => setModalOpen(true);
   const closePluginStore = () => setModalOpen(false);
 
-  const handlePluginUpdate = (plugins: string[]) => {
-    setSelectedPlugins(plugins);
-    // Here you might want to add logic to persist the plugin selection
-    // for the specific nodeId
-  };
+  const handlePluginUpdate = useCallback((plugins: string[]) => {
+    updateNodeData(nodeId, {
+      plugins: plugins,
+    });
+  }, [nodeId, updateNodeData, node?.data.plugins]);
 
-  const displayPlugins = selectedPlugins.length > 0 ? selectedPlugins : task.plugins || [];
+  const displayPlugins = currentPlugins.length > 0 ? currentPlugins : task.plugins || [];
 
   return (
     <>
@@ -48,7 +53,7 @@ function NodePlugin({
           </Button>
         </div>
         <div className="flex flex-wrap gap-2 pl-6">
-          {displayPlugins.map((plugin) => (
+          {displayPlugins.map((plugin: string) => (
             <Badge key={plugin}>{plugin}</Badge>
           ))}
         </div>
