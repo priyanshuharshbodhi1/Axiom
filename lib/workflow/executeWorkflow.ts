@@ -276,6 +276,7 @@ function createExecutionEnvironment(
     setOutput: (name: string, value: string) => {
       environment.phases[node.id].outputs[name] = value;
     },
+    getPlugin: () => node.data.plugins,
 
     getBrowser: () => environment.browser,
     setBrowser: (browser: Browser) => (environment.browser = browser),

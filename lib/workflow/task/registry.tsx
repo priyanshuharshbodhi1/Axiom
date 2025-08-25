@@ -11,6 +11,7 @@ import { ReadPropertyFromJsonTask } from "@/lib/workflow/task/ReadPropertyFromJs
 import { ScrollToElementTask } from "@/lib/workflow/task/ScrollToElement";
 import { WaitForElementTask } from "@/lib/workflow/task/WaitForElement";
 import { InputTextTask } from "@/lib/workflow/task/InputText";
+import { AgentTask } from "@/lib/workflow/task/AgentTask";
 import { TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 
@@ -19,6 +20,7 @@ type Registry = {
 };
 
 export const TaskRegistry: Registry = {
+  AGENT: AgentTask,
   INPUT_TEXT: InputTextTask,
   LAUNCH_BROWSER: LaunchBrowserTask,
   PAGE_TO_HTML: PageToHtmlTask,
