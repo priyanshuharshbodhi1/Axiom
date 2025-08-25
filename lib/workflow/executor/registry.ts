@@ -12,10 +12,11 @@ import { ScrollToElementExecutor } from "@/lib/workflow/executor/ScrollToElement
 import { WaitForElementExecutor } from "@/lib/workflow/executor/WaitForElementExecutor";
 import { InputTextExecutor } from "@/lib/workflow/executor/InputTextExecutor";
 import { AgentExecutor } from "@/lib/workflow/executor/AgentExecutor";
+import { TelegramAgentExecutor } from "@/lib/workflow/executor/TelegramAgentExecutor";
 import { ExecutionEnvironment } from "@/types/executor";
 import { TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
-
+import { TelegramExecutor } from "@/lib/workflow/executor/TelegramExecutor";
 type ExecutorFn<T extends WorkflowTask> = (
   environment: ExecutionEnvironment<T>
 ) => Promise<boolean>;
@@ -25,6 +26,8 @@ type RegistryType = {
 };
 
 export const ExecutorRegistry: RegistryType = {
+  TELEGRAM: TelegramExecutor,
+  TELEGRAM_AGENT: TelegramAgentExecutor,
   AGENT: AgentExecutor,
   INPUT_TEXT: InputTextExecutor,
   LAUNCH_BROWSER: LaunchBrowserExecutor,

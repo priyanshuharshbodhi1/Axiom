@@ -13,4 +13,11 @@ export const pluginStore: Plugin[] = [
     icon: "🪙",
     category: "Search",
   },
+  {
+    id: "sendETH",
+    name: "Send ETH", 
+    description: "Send ETH to a wallet",
+    icon: "💰",
+    category: "Transaction",
+  },
 ];

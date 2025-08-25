@@ -14,6 +14,7 @@
     "@clerk/nextjs": "^5.3.3",
     "@goat-sdk/adapter-vercel-ai": "^0.2.8",
     "@goat-sdk/plugin-coingecko": "^0.2.8",
+    "@goat-sdk/wallet-evm": "^0.2.8",
     "@goat-sdk/wallet-viem": "^0.2.8",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.18.0",

@@ -46,6 +46,7 @@ export default function TaskMenu() {
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={TaskType.AGENT} />
+            <TaskMenuBtn taskType={TaskType.TELEGRAM_AGENT} />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="extraction">
@@ -80,6 +81,7 @@ export default function TaskMenu() {
             Result delivery
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
+            <TaskMenuBtn taskType={TaskType.TELEGRAM} />
             <TaskMenuBtn taskType={TaskType.DELIVER_VIA_WEBHOOK} />
           </AccordionContent>
         </AccordionItem>
