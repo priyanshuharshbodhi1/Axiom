@@ -13,6 +13,8 @@ export enum TaskType {
   NAVIGATE_URL = "NAVIGATE_URL",
   SCROLL_TO_ELEMENT = "SCROLL_TO_ELEMENT",
   AGENT = "AGENT",
+  TELEGRAM_AGENT = "TELEGRAM_AGENT",
+  TELEGRAM = "TELEGRAM",
 }
 
 export enum TaskParamType {
