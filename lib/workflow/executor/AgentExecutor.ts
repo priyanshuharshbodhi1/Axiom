@@ -9,6 +9,8 @@ import { viem } from "@goat-sdk/wallet-viem";
 import { generateText } from "ai";
 import { google } from '@ai-sdk/google';
 import { pluginRegistry } from "@/lib/goat-plugins/pluginRegistry";
+import prisma from "@/lib/prisma";
+import { symmetricDecrypt } from "@/lib/encryption";
 
 
 export async function AgentExecutor(
@@ -24,6 +26,10 @@ export async function AgentExecutor(
     if (!prompt) {
       environment.log.error("input->prompt not defined");
     }
+    const wallet = environment.getInput("Wallet");
+    if (!wallet) {
+      environment.log.error("input->wallet not defined");
+    }
 
     const context = environment.getInput("Context");
     environment.log.info(`Context: ${context}`);
@@ -31,7 +37,24 @@ export async function AgentExecutor(
     const plugins = environment.getPlugin();
     environment.log.info(`Plugins: ${plugins}`);
 
-    const account = privateKeyToAccount(process.env.WALLET_PRIVATE_KEY as `0x${string}`);
+     // Get credentials from DB
+     const credential = await prisma.credential.findUnique({
+      where: { id: wallet },
+    });
+
+    if (!credential) {
+      environment.log.error("credential not found");
+      return false;
+    }
+
+    const privateKey = symmetricDecrypt(credential.value);
+    if (!privateKey) {
+      environment.log.error("cannot decrypt wallet private key");
+      return false;
+    }
+    const account = privateKeyToAccount(
+      privateKey.startsWith('0x') ? privateKey as `0x${string}` : `0x${privateKey}`
+    );
 
     const walletClient = createWalletClient({
       account: account,

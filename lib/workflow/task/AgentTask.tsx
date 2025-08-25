@@ -13,6 +13,11 @@ export const AgentTask = {
   credits: 2,
   inputs: [
     {
+      name: "Wallet",
+      type: TaskParamType.CREDENTIAL,
+      required: true,
+    },
+    {
       name: "System Prompt",
       type: TaskParamType.STRING,
       required: true,

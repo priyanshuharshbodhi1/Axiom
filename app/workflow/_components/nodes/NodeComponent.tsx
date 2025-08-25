@@ -24,12 +24,12 @@ const NodeComponent = memo((props: NodeProps) => {
     <NodeCard nodeId={props.id} isSelected={!!props.selected}>
       {DEV_MODE && <Badge>DEV: {props.id}</Badge>}
       <NodeHeader taskType={nodeData.type} nodeId={props.id} />
+      <NodePlugin taskType={nodeData.type} nodeId={props.id} />
       <NodeInputs>
         {task.inputs.map((input) => (
           <NodeInput key={input.name} input={input} nodeId={props.id} />
         ))}
       </NodeInputs>
-      <NodePlugin taskType={nodeData.type} nodeId={props.id} />
       <NodeOutputs>
         {task.outputs.map((output) => (
           <NodeOutput key={output.name} output={output} />
