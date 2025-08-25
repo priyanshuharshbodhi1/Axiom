@@ -12,14 +12,17 @@ import { ScrollToElementTask } from "@/lib/workflow/task/ScrollToElement";
 import { WaitForElementTask } from "@/lib/workflow/task/WaitForElement";
 import { InputTextTask } from "@/lib/workflow/task/InputText";
 import { AgentTask } from "@/lib/workflow/task/AgentTask";
+import { TelegramAgentTask } from "@/lib/workflow/task/TelegramAgent";
 import { TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
-
+import { TelegramTask } from "@/lib/workflow/task/TelegramTask";
 type Registry = {
   [K in TaskType]: WorkflowTask & { type: K };
 };
 
 export const TaskRegistry: Registry = {
+  TELEGRAM: TelegramTask,
+  TELEGRAM_AGENT: TelegramAgentTask,
   AGENT: AgentTask,
   INPUT_TEXT: InputTextTask,
   LAUNCH_BROWSER: LaunchBrowserTask,

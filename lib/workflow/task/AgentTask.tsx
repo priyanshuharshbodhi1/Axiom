@@ -4,7 +4,7 @@ import { LucideProps, Brain } from "lucide-react";
 
 export const AgentTask = {
   type: TaskType.AGENT,
-  label: "Agent",
+  label: "DeFAI Agent",
   icon: (props: LucideProps) => (
     <Brain className="stroke-rose-400" {...props} />
   ),

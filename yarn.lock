@@ -254,7 +254,7 @@
     "@goat-sdk/core" "0.4.7"
     zod "3.23.8"
 
-"@goat-sdk/wallet-evm@0.2.8":
+"@goat-sdk/wallet-evm@0.2.8", "@goat-sdk/wallet-evm@^0.2.8":
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@goat-sdk/wallet-evm/-/wallet-evm-0.2.8.tgz#c584836f0288d2cb79ce46a53086081541e23a4e"
   integrity sha512-KRacH6xWqWkXaJhrqScQC4g9H2K1FmAg+qt4lrHB3S7OLyxIj8yFmRoUbpi+BhSLH9bFHUUVOCZ8zXmHJMjGdw==
