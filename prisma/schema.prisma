@@ -111,3 +111,51 @@ model UserPurchase {
   currency    String
   date        DateTime @default(now())
 }
+
+model MarketplaceWorkflow {
+  id          String   @id @default(cuid())
+  workflowId  String   @unique
+  userId      String
+  name        String
+  description String
+  price       Float
+  category    String
+  tags        String[]
+  screenshots String[]
+  rating      Float    @default(0)
+  reviewCount Int      @default(0)
+  status      String   // DRAFT | PUBLISHED | ARCHIVED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  workflow    Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  reviews     MarketplaceReview[]
+  purchases   MarketplacePurchase[]
+}
+
+model MarketplaceReview {
+  id          String   @id @default(cuid())
+  workflowId  String
+  userId      String
+  rating      Int
+  comment     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  workflow    MarketplaceWorkflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+}
+
+model MarketplacePurchase {
+  id          String   @id @default(cuid())
+  workflowId  String
+  userId      String
+  price       Float
+  status      String   // PENDING | COMPLETED | FAILED
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+  txHash      String?  // Blockchain transaction hash
+  paymentToken String  // Token symbol (e.g., ETH, USDC)
+  paymentAmount String // Amount in wei or token units
+
+  workflow    MarketplaceWorkflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+}
