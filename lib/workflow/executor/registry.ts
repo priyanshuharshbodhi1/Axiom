@@ -17,6 +17,7 @@ import { ExecutionEnvironment } from "@/types/executor";
 import { TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 import { TelegramExecutor } from "@/lib/workflow/executor/TelegramExecutor";
+import { AgentWithSafeWalletExecutor } from "@/lib/workflow/executor/AgentWithSafeWalletExecutor";
 type ExecutorFn<T extends WorkflowTask> = (
   environment: ExecutionEnvironment<T>
 ) => Promise<boolean>;
@@ -26,6 +27,7 @@ type RegistryType = {
 };
 
 export const ExecutorRegistry: RegistryType = {
+  AGENT_WITH_SAFE_WALLET: AgentWithSafeWalletExecutor,
   TELEGRAM: TelegramExecutor,
   TELEGRAM_AGENT: TelegramAgentExecutor,
   AGENT: AgentExecutor,

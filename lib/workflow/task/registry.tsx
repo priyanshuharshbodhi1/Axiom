@@ -16,11 +16,13 @@ import { TelegramAgentTask } from "@/lib/workflow/task/TelegramAgent";
 import { TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 import { TelegramTask } from "@/lib/workflow/task/TelegramTask";
+import { AgentWithSafeWalletTask } from "@/lib/workflow/task/AgentWithSafeWalletTask";
 type Registry = {
   [K in TaskType]: WorkflowTask & { type: K };
 };
 
 export const TaskRegistry: Registry = {
+  AGENT_WITH_SAFE_WALLET: AgentWithSafeWalletTask,
   TELEGRAM: TelegramTask,
   TELEGRAM_AGENT: TelegramAgentTask,
   AGENT: AgentTask,

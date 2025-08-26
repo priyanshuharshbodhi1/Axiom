@@ -3,11 +3,11 @@ import { TaskParamType, TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 import { LucideProps, Brain } from "lucide-react";
 
-export const AgentTask = {
-  type: TaskType.AGENT,
-  label: "DeFAI Agent",
+export const AgentWithSafeWalletTask = {
+  type: TaskType.AGENT_WITH_SAFE_WALLET,
+  label: "Agent with Safe Wallet",
   icon: (props: LucideProps) => (
-    <Brain className="stroke-rose-400" {...props} />
+    <Brain className="stroke-green-400" {...props} />
   ),
   isEntryPoint: false,
   isAgent: true,

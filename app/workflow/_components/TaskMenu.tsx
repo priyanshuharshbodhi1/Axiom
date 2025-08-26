@@ -28,52 +28,14 @@ export default function TaskMenu() {
           "agents",
         ]}
       >
-        <AccordionItem value="interactions">
-          <AccordionTrigger className="font-bold">
-            User interactions
-          </AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-1">
-            {/* <TaskMenuBtn taskType={TaskType.INPUT_TEXT} /> */}
-            <TaskMenuBtn taskType={TaskType.NAVIGATE_URL} />
-            <TaskMenuBtn taskType={TaskType.FILL_INPUT} />
-            <TaskMenuBtn taskType={TaskType.CLICK_ELEMENT} />
-            <TaskMenuBtn taskType={TaskType.SCROLL_TO_ELEMENT} />
-          </AccordionContent>
-        </AccordionItem>
         <AccordionItem value="agents">
           <AccordionTrigger className="font-bold">
-            Agents
+            AI Agents
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={TaskType.AGENT} />
+            <TaskMenuBtn taskType={TaskType.AGENT_WITH_SAFE_WALLET} />
             <TaskMenuBtn taskType={TaskType.TELEGRAM_AGENT} />
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="extraction">
-          <AccordionTrigger className="font-bold">
-            Data extraction
-          </AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-1">
-            <TaskMenuBtn taskType={TaskType.PAGE_TO_HTML} />
-            <TaskMenuBtn taskType={TaskType.EXTRACT_TEXT_FROM_ELEMENT} />
-            <TaskMenuBtn taskType={TaskType.EXTRACT_DATA_WITH_AI} />
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="storage">
-          <AccordionTrigger className="font-bold">
-            Data storage
-          </AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-1">
-            <TaskMenuBtn taskType={TaskType.READ_PROPERTY_FROM_JSON} />
-            <TaskMenuBtn taskType={TaskType.ADD_PROPERTY_TO_JSON} />
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="timing">
-          <AccordionTrigger className="font-bold">
-            Timing controls
-          </AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-1">
-            <TaskMenuBtn taskType={TaskType.WAIT_FOR_ELEMENT} />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="results">

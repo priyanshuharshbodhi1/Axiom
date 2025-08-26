@@ -1,8 +1,6 @@
-import { AgentTask } from "@/lib/workflow/task/AgentTask";
 import { ExecutionEnvironment } from "@/types/executor";
 import { privateKeyToAccount } from "viem/accounts";
 import { http } from "viem";
-import { sepolia } from "viem/chains";
 import { createWalletClient } from "viem";
 import { getOnChainTools } from "@goat-sdk/adapter-vercel-ai";
 import { viem } from "@goat-sdk/wallet-viem";
@@ -12,9 +10,11 @@ import { pluginRegistry } from "@/lib/goat-plugins/pluginRegistry";
 import prisma from "@/lib/prisma";
 import { symmetricDecrypt } from "@/lib/encryption";
 import { selectChain } from "@/lib/chains";
+import { safe } from "@goat-sdk/wallet-safe"
+import { AgentWithSafeWalletTask } from "@/lib/workflow/task/AgentWithSafeWalletTask";
 
-export async function AgentExecutor(
-  environment: ExecutionEnvironment<typeof AgentTask>
+export async function AgentWithSafeWalletExecutor(
+  environment: ExecutionEnvironment<typeof AgentWithSafeWalletTask>
 ): Promise<boolean> {
   try {
     const systemPrompt = environment.getInput("System Prompt");
@@ -41,8 +41,8 @@ export async function AgentExecutor(
     const plugins = environment.getPlugin();
     environment.log.info(`Plugins: ${plugins}`);
 
-     // Get credentials from DB
-     const credential = await prisma.credential.findUnique({
+    // Get credentials from DB
+    const credential = await prisma.credential.findUnique({
       where: { id: wallet },
     });
 
@@ -56,19 +56,13 @@ export async function AgentExecutor(
       environment.log.error("cannot decrypt wallet private key");
       return false;
     }
-    const account = privateKeyToAccount(
-      privateKey.startsWith('0x') ? privateKey as `0x${string}` : `0x${privateKey}`
-    );
+    const pk = privateKey.startsWith('0x') ? privateKey as `0x${string}` : `0x${privateKey}`
+
     environment.log.info(`Chain: ${JSON.stringify(selectChain(chain))}`);
     environment.log.info(`RPC URL: ${selectChain(chain).rpcUrls.default.http[0]}`);
-    const walletClient = createWalletClient({
-      account: account,
-      transport: http(selectChain(chain).rpcUrls.default.http[0]),
-      chain: selectChain(chain),
-    });
-
+    
     const tools = await getOnChainTools({
-      wallet: viem(walletClient as any),
+      wallet: await safe(pk as `0x${string}`, selectChain(chain) as any),
       plugins: plugins?.map(pluginId => pluginRegistry[pluginId as keyof typeof pluginRegistry]) || [],
     });
 
