@@ -22,10 +22,11 @@ function Logo({
         <SquareDashedMousePointer size={iconSize} className="stroke-white" />
       </div>
       <div>
+        <span className="text-stone-700 dark:text-stone-300">Builder</span>
         <span className="bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">
-          DeFAI
+          Fi
         </span>
-        <span className="text-stone-700 dark:text-stone-300">Office</span>
+        
       </div>
     </Link>
   );
