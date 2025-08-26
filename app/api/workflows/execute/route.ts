@@ -35,6 +35,11 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const workflowId = searchParams.get("workflowId") as string;
+  const executionId = searchParams.get("executionId") as string;
+  if (executionId.length > 0) {
+    await ExecuteWorkflow(executionId);
+    return Response.json({ success: true }, { status: 200 });
+  }
 
   if (!workflowId) {
     return Response.json({ error: "bad request" }, { status: 400 });
