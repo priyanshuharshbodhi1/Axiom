@@ -34,7 +34,7 @@ export default function TaskMenu() {
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={TaskType.AGENT} />
-            <TaskMenuBtn taskType={TaskType.AGENT_WITH_SAFE_WALLET} />
+            {/* <TaskMenuBtn taskType={TaskType.AGENT_WITH_SAFE_WALLET} /> */}
             <TaskMenuBtn taskType={TaskType.TELEGRAM_AGENT} />
           </AccordionContent>
         </AccordionItem>

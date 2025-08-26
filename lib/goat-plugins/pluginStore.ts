@@ -14,6 +14,13 @@ export const pluginStore: Plugin[] = [
     category: "Search",
   },
   {
+    id: "X-analyst",
+    name: "X Analyst", 
+    description: "Get market analysis via x.com data",
+    icon: "𝕏",
+    category: "Search",
+  },
+  {
     id: "sendETH",
     name: "Send ETH", 
     description: "Send ETH to a wallet",
@@ -21,17 +28,10 @@ export const pluginStore: Plugin[] = [
     category: "Transaction",
   },
   {
-    id: "oneInch",
-    name: "OneInch",
-    description: "Get balances for different tokens for a wallet using the 1inch API.",
+    id: "Cross-Chain-Swap",
+    name: "Cross-Chain Swap",
+    description: "Swap token Cross chain using near intent.",
     icon: "❶",
-    category: "Transaction",
-  },
-  {
-    id: "zeroEx",
-    name: "ZeroEx",
-    description: "Get quotes and swap on 0x",
-    icon: "🔄",
     category: "Transaction",
   },
   {
@@ -68,6 +68,13 @@ export const pluginStore: Plugin[] = [
     description: "Get price predictions using Allora API",
     icon: "🔮",
     category: "Analytics",
+  },
+  {
+    id: "zeroEx",
+    name: "ZeroEx",
+    description: "Get quotes and swap on 0x",
+    icon: "🔄",
+    category: "Transaction",
   },
   {
     id: "avnu",
