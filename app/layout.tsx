@@ -21,6 +21,10 @@ export default function RootLayout({
     <ClerkProvider
       afterSignOutUrl={"/sign-in"}
       appearance={{
+        layout: {
+          socialButtonsPlacement: "top",
+          socialButtonsVariant: "blockButton",
+        },
         elements: {
           formButtonPrimary:
             "bg-primary hover:bg-primary/90 text-sm !shadow-none",
