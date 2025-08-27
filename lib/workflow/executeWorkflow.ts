@@ -228,6 +228,9 @@ async function executePhase(
 
   const executionEnvironment: ExecutionEnvironment<any> =
     createExecutionEnvironment(node, environment, logCollector);
+  
+  // Set the execution ID
+  executionEnvironment.executionId = phase.workflowExecutionId;
 
   return await runFn(executionEnvironment);
 }
@@ -272,6 +275,7 @@ function createExecutionEnvironment(
   logCollector: LogCollector
 ): ExecutionEnvironment<any> {
   return {
+    executionId: '', // This will be set later in executePhase
     getInput: (name: string) => environment.phases[node.id]?.inputs[name],
     setOutput: (name: string, value: string) => {
       environment.phases[node.id].outputs[name] = value;
