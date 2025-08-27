@@ -10,6 +10,7 @@ import {
   Layers2Icon,
   MenuIcon,
   ShieldCheckIcon,
+  ShoppingCartIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,10 +28,16 @@ const routes = [
     icon: Layers2Icon,
   },
   {
+    href: "marketplace",
+    label: "Marketplace",
+    icon: ShoppingCartIcon,
+  },
+  {
     href: "credentials",
     label: "Credentials",
     icon: ShieldCheckIcon,
   },
+
 ];
 
 function DesktopSidebar() {
