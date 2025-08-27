@@ -53,7 +53,7 @@ export default async function WorkflowSettingsPage({ params }: { params: { id: s
               </div>
               
               <p className="text-muted-foreground">
-                General settings will be implemented here.
+                More settings coming soon here.
               </p>
             </div>
           </TabsContent>
