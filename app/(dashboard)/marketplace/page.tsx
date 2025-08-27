@@ -19,6 +19,7 @@ interface MarketplaceWorkflow {
   rating: number;
   reviewCount: number;
   screenshots: string[];
+  userId: string;
 }
 
 async function fetchWorkflows(search: string, category: string, sortBy: string) {
@@ -27,7 +28,7 @@ async function fetchWorkflows(search: string, category: string, sortBy: string) 
     category,
     sortBy,
   });
-  const response = await fetch(`/api/workflows?${params}`);
+  const response = await fetch(`/api/workflows/marketplace?${params}`);
   if (!response.ok) {
     throw new Error('Failed to fetch workflows');
   }

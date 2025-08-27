@@ -50,46 +50,71 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET(req: Request) {
+export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(req.url);
-    const category = searchParams.get('category');
-    const search = searchParams.get('search');
+    const { searchParams } = new URL(request.url);
+    const search = searchParams.get('search') || '';
+    const category = searchParams.get('category') || 'all';
+    const sortBy = searchParams.get('sortBy') || 'popular';
 
-    const where = {
-      status: 'ACTIVE',
-      ...(category && { category }),
-      ...(search && {
-        OR: [
-          { workflow: { name: { contains: search, mode: 'insensitive' } } },
-          { workflow: { description: { contains: search, mode: 'insensitive' } } },
-          { tags: { hasSome: [search] } },
-        ],
-      }),
-    };
+    let whereClause: any = {};
+    if (search) {
+      whereClause.OR = [
+        { name: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+      ];
+    }
+    if (category !== 'all') {
+      whereClause.category = category;
+    }
+    whereClause.status = 'ACTIVE';
 
-    const marketplaceWorkflows = await prisma.marketplaceWorkflow.findMany({
-      where,
+    let orderBy: any = {};
+    switch (sortBy) {
+      case 'newest':
+        orderBy = { createdAt: 'desc' };
+        break;
+      case 'price-low':
+        orderBy = { price: 'asc' };
+        break;
+      case 'price-high':
+        orderBy = { price: 'desc' };
+        break;
+      default:
+        orderBy = { rating: 'desc' };
+    }
+
+    const workflows = await prisma.marketplaceWorkflow.findMany({
+      where: whereClause,
+      orderBy,
       include: {
         workflow: {
-          include: {
-            user: {
-              select: {
-                name: true,
-                image: true,
-              },
-            },
+          select: {
+            userId: true,
+            name: true,
+            description: true,
+          },
+        },
+        reviews: {
+          select: {
+            rating: true,
           },
         },
       },
-      orderBy: {
-        createdAt: 'desc',
-      },
     });
 
-    return NextResponse.json(marketplaceWorkflows);
+    const workflowsWithStats = workflows.map(workflow => ({
+      ...workflow,
+      rating: workflow.reviews.reduce((acc: number, review: { rating: number }) => acc + review.rating, 0) / workflow.reviews.length || 0,
+      reviewCount: workflow.reviews.length,
+    }));
+
+    return NextResponse.json(workflowsWithStats);
   } catch (error) {
     console.error('Error fetching marketplace workflows:', error);
-    return new NextResponse('Internal Server Error', { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to fetch marketplace workflows' },
+      { status: 500 }
+    );
   }
 } 

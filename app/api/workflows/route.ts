@@ -1,43 +1,63 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
 import prisma from '@/lib/prisma';
-import { Prisma } from '@prisma/client';
 
-export async function GET(req: Request) {
+export async function GET(request: Request) {
   try {
-    const { userId } = auth();
-    if (!userId) {
-      return new NextResponse('Unauthorized', { status: 401 });
-    }
-
-    const { searchParams } = new URL(req.url);
+    const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
     const category = searchParams.get('category') || 'all';
     const sortBy = searchParams.get('sortBy') || 'popular';
 
-    const where: Prisma.WorkflowWhereInput = {
-      userId,
-      ...(search && {
-        OR: [
-          { name: { contains: search } },
-          { description: { contains: search } },
-        ],
-      }),
-    };
+    let whereClause: any = {};
+    if (search) {
+      whereClause.OR = [
+        { name: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+      ];
+    }
+    if (category !== 'all') {
+      whereClause.category = category;
+    }
 
-    const workflows = await prisma.workflow.findMany({
-      where,
-      orderBy: {
-        createdAt: 'desc',
-      },
+    let orderBy: any = {};
+    switch (sortBy) {
+      case 'newest':
+        orderBy = { createdAt: 'desc' };
+        break;
+      case 'price-low':
+        orderBy = { price: 'asc' };
+        break;
+      case 'price-high':
+        orderBy = { price: 'desc' };
+        break;
+      default:
+        orderBy = { rating: 'desc' };
+    }
+
+    const workflows = await prisma.marketplaceWorkflow.findMany({
+      where: whereClause,
+      orderBy,
       include: {
-        marketplaceWorkflow: true,
+        reviews: {
+          select: {
+            rating: true,
+          },
+        },
       },
     });
 
-    return NextResponse.json(workflows);
+    const workflowsWithStats = workflows.map(workflow => ({
+      ...workflow,
+      rating: workflow.reviews.reduce((acc, review) => acc + review.rating, 0) / workflow.reviews.length || 0,
+      reviewCount: workflow.reviews.length,
+    }));
+
+    return NextResponse.json(workflowsWithStats);
   } catch (error) {
     console.error('Error fetching workflows:', error);
-    return new NextResponse('Internal Server Error', { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to fetch workflows' },
+      { status: 500 }
+    );
   }
 } 
