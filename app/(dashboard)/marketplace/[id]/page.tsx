@@ -38,7 +38,6 @@ interface MarketplaceWorkflow {
 
 export default function WorkflowDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const { data: session, status } = useSession();
   const [isFavorite, setIsFavorite] = useState(false);
   const [selectedToken, setSelectedToken] = useState('ETH');
   const [isPurchasing, setIsPurchasing] = useState(false);
