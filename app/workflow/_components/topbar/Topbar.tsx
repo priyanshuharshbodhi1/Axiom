@@ -7,9 +7,10 @@ import SaveBtn from "@/app/workflow/_components/topbar/SaveBtn";
 import UnpublishBtn from "@/app/workflow/_components/topbar/UnpublishBtn";
 import TooltipWrapper from "@/components/TooltipWrapper";
 import { Button } from "@/components/ui/button";
-import { ChevronLeftIcon } from "lucide-react";
+import { ChevronLeftIcon, StoreIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { ListWorkflowModal } from "@/app/components/ListWorkflowModal";
 
 interface Props {
   title: string;
@@ -54,6 +55,15 @@ export default function Topbar({
               <>
                 <SaveBtn workflowId={workflowId} />
                 <PublishBtn workflowId={workflowId} />
+                <ListWorkflowModal
+                  workflowId={workflowId}
+                  trigger={
+                    <Button variant="outline" size="sm">
+                      <StoreIcon className="h-4 w-4 mr-2" />
+                      List in Marketplace
+                    </Button>
+                  }
+                />
               </>
             )}
           </>

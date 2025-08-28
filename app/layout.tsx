@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./providers";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
@@ -33,9 +34,11 @@ export default function RootLayout({
     >
       <html lang="en">
         <body className={inter.className}>
-          <AppProviders>{children}</AppProviders>
+          <Providers>
+            <AppProviders>{children}</AppProviders>
+          </Providers>
+          <Toaster richColors />
         </body>
-        <Toaster richColors />
       </html>
     </ClerkProvider>
   );
