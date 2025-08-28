@@ -103,11 +103,21 @@ export default function WebhooksTab({ workflow }: WebhooksTabProps) {
                 <h4 className="font-medium mb-2">How to use</h4>
                 <div className="p-4 bg-muted rounded-md">
                   <p className="text-xs mb-2">Send a POST request to the webhook URL:</p>
-                  <pre className="text-xs overflow-x-auto p-2 bg-background rounded-sm">
-                    {`curl -X POST ${webhookUrl} \\
+                  <div className="relative">
+                    <pre className="text-xs overflow-x-auto p-2 bg-background rounded-sm">
+                      {`curl -X POST "${webhookUrl}" \\
   -H "Content-Type: application/json" \\
   -d '{"message": "Hello from webhook!"}'`}
-                  </pre>
+                    </pre>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-1 right-1"
+                      onClick={() => copyToClipboard(`curl -X POST "${webhookUrl}" -H "Content-Type: application/json" -d '{"message": "Hello from webhook!"}'`)}
+                    >
+                      <CopyIcon className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
 
