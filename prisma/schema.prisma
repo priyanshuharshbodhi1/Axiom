@@ -21,6 +21,7 @@ model Workflow {
   creditsCost   Int     @default(0)
 
   cron String?
+  webhookKey String? @unique
 
   status String // DRAFT | PUBLISHED
 
@@ -49,6 +50,7 @@ model WorkflowExecution {
   startedAt   DateTime?
   completedAt DateTime?
   definition  String    @default("{}")
+  webhookPayload String? @db.Text
 
   creditsConsumed Int @default(0)
 
