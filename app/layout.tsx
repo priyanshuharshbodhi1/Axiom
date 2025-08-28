@@ -9,8 +9,17 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "defai office",
-  description: "defai office",
+  title: "Axiom",
+  description: "AI-powered DeFi workflow automation.",
+  icons: {
+    icon: [
+      {
+        url: "https://api.iconify.design/tabler/circuit-ai.svg",
+        rel: "icon",
+        type: "image/svg+xml",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
