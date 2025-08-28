@@ -3,7 +3,7 @@
 import React, { useCallback, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Layers2Icon, Loader2 } from "lucide-react";
+import { WorkflowIcon, Loader2 } from "lucide-react";
 import CustomDialogHeader from "@/components/CustomDialogHeader";
 import { useForm } from "react-hook-form";
 import {
@@ -66,7 +66,7 @@ function CreateWorkflowDialog({ triggerText }: { triggerText?: string }) {
       </DialogTrigger>
       <DialogContent className="px-0">
         <CustomDialogHeader
-          icon={Layers2Icon}
+          icon={WorkflowIcon}
           title="Create workflow"
           subTitle="Start building your workflow"
         />

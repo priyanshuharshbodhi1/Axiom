@@ -5,7 +5,7 @@ import ReactCountUpWrapper from "@/components/ReactCountUpWrapper";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Query, useQuery } from "@tanstack/react-query";
-import { CoinsIcon, Loader2Icon } from "lucide-react";
+import { CircleDollarSignIcon, Loader2Icon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -24,7 +24,7 @@ function UserAvailableCreditsBadge() {
         buttonVariants({ variant: "outline" })
       )}
     >
-      <CoinsIcon size={20} className="text-primary" />
+      <CircleDollarSignIcon size={20} className="text-primary" />
       <span className="font-semibold capitalize">
         {query.isLoading && <Loader2Icon className="w-4 h-4 animate-spin" />}
         {!query.isLoading && query.data && (

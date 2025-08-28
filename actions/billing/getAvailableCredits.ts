@@ -9,9 +9,19 @@ export async function GetAvailableCredits() {
     throw new Error("unauthenticated");
   }
 
-  const balance = await prisma.userBalance.findUnique({
+  let balance = await prisma.userBalance.findUnique({
     where: { userId },
   });
-  if (!balance) return -1;
+  
+  // Create user balance with 250 credits if it doesn't exist
+  if (!balance) {
+    balance = await prisma.userBalance.create({
+      data: {
+        userId,
+        credits: 250,
+      },
+    });
+  }
+  
   return balance.credits;
 }

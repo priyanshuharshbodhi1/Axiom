@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CoinsIcon, CreditCard } from "lucide-react";
+import { CreditCardIcon, CreditCard } from "lucide-react";
 import { CreditsPack, PackId } from "@/types/billing";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -30,7 +30,7 @@ export default function CreditsPurchase() {
     <Card>
       <CardHeader>
         <CardTitle className="text-2xl font-bold flex items-center gap-2">
-          <CoinsIcon className="h-6 w-6 text-primary" />
+          <CreditCardIcon className="h-6 w-6 text-primary" />
           Purchase Credits
         </CardTitle>
         <CardDescription>

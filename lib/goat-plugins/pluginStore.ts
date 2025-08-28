@@ -10,7 +10,7 @@ export const pluginStore: Plugin[] = [
     id: "CoinGecko",
     name: "CoinGecko", 
     description: "Get coin information using CoinGecko API",
-    icon: "🪙",
+    icon: "💰",
     category: "Search",
   },
   {
@@ -45,7 +45,7 @@ export const pluginStore: Plugin[] = [
     id: "coinMarketCap",
     name: "CoinMarketCap",
     description: "Get information about a token using the CoinMarketCap API.",
-    icon: "🪙",
+    icon: "💰",
     category: "Analytics",
   },
   {

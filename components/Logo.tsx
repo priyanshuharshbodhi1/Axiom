@@ -18,11 +18,11 @@ function Logo({
         fontSize
       )}
     >
-      <div className="rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 p-2">
-        <Workflow size={iconSize} className="stroke-white" />
+      <div className="rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-500 p-2">
+        <Workflow size={iconSize} className="stroke-black" />
       </div>
       <div>
-        <span className="bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
           Axiom
         </span>
       </div>

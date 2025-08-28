@@ -6,11 +6,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import UserAvailableCreditsBadge from "@/components/UserAvailableCreditsBadge";
 import {
   CoinsIcon,
-  HomeIcon,
-  Layers2Icon,
+  LayoutDashboardIcon,
+  GitBranchIcon,
   MenuIcon,
-  ShieldCheckIcon,
-  ShoppingCartIcon,
+  KeyRoundIcon,
+  StoreIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,22 +20,22 @@ const routes = [
   {
     href: "",
     label: "Home",
-    icon: HomeIcon,
+    icon: LayoutDashboardIcon,
   },
   {
     href: "workflows",
     label: "Workflows",
-    icon: Layers2Icon,
+    icon: GitBranchIcon,
   },
   {
     href: "marketplace",
     label: "Marketplace",
-    icon: ShoppingCartIcon,
+    icon: StoreIcon,
   },
   {
     href: "credentials",
     label: "Credentials",
-    icon: ShieldCheckIcon,
+    icon: KeyRoundIcon,
   },
 
 ];

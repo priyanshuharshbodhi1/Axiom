@@ -22,7 +22,7 @@ import {
 } from "@/schema/workflow";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { CopyIcon, Layers2Icon, Loader2 } from "lucide-react";
+import { CopyIcon, WorkflowIcon, Loader2 } from "lucide-react";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -76,7 +76,7 @@ function DuplicateWorkflowDialog({ workflowId }: { workflowId?: string }) {
         </Button>
       </DialogTrigger>
       <DialogContent className="px-0">
-        <CustomDialogHeader icon={Layers2Icon} title="Duplicate workflow" />
+        <CustomDialogHeader icon={WorkflowIcon} title="Duplicate workflow" />
         <div className="p-6">
           <Form {...form}>
             <form

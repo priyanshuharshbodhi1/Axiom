@@ -16,7 +16,7 @@ export default function StatsCard(props: Props) {
         <CardTitle>{props.title}</CardTitle>
         <props.icon
           size={120}
-          className="text-muted-foreground absolute -bottom-4 -right-8 stroke-primary opacity-10"
+          className="text-primary absolute -bottom-4 -right-8 stroke-primary opacity-20"
         />
       </CardHeader>
       <CardContent>

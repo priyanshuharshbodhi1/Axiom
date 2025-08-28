@@ -9,7 +9,7 @@ import CreditUsageChart from "@/app/(dashboard)/billing/_components/CreditUsageC
 import { Skeleton } from "@/components/ui/skeleton";
 import { waitFor } from "@/lib/helper/waitFor";
 import { Period } from "@/types/analytics";
-import { CirclePlayIcon, CoinsIcon, WaypointsIcon } from "lucide-react";
+import { PlayIcon, CreditCardIcon, RouteIcon } from "lucide-react";
 import React, { Suspense } from "react";
 
 function HomePage({
@@ -26,7 +26,7 @@ function HomePage({
   return (
     <div className="flex flex-1 flex-col h-full">
       <div className="flex justify-between">
-        <h1 className="text-3xl font-bold">Home</h1>
+        <h1 className="text-2xl font-bold">Home</h1>
         <Suspense fallback={<Skeleton className="w-[180px] h-[40px]" />}>
           <PeriodSelectorWrapper selectedPeriod={period} />
         </Suspense>
@@ -62,17 +62,17 @@ async function StatsCards({ selectedPeriod }: { selectedPeriod: Period }) {
       <StatsCard
         title="Workflow executions"
         value={data.workflowExecutions}
-        icon={CirclePlayIcon}
+        icon={PlayIcon}
       />
       <StatsCard
         title="Phase executions"
         value={data.phaseExecutions}
-        icon={WaypointsIcon}
+        icon={RouteIcon}
       />
       <StatsCard
         title="Credits consumed"
         value={data.creditsConsumed}
-        icon={CoinsIcon}
+        icon={CreditCardIcon}
       />
     </div>
   );

@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import ReactCountUpWrapper from "@/components/ReactCountUpWrapper";
-import { ArrowLeftRightIcon, CoinsIcon } from "lucide-react";
+import { ArrowLeftRightIcon, CreditCardIcon } from "lucide-react";
 import CreditsPurchase from "@/app/(dashboard)/billing/_components/CreditsPurchase";
 import { Period } from "@/types/analytics";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInperiod";
@@ -21,7 +21,7 @@ import InvoiceBtn from "@/app/(dashboard)/billing/_components/InvoiceBtn";
 export default function BillingPage() {
   return (
     <div className="mx-auto p-4 space-y-8">
-      <h1 className="text-3xl font-bold">Billing</h1>
+      <h1 className="text-2xl font-bold">Billing</h1>
       <Suspense fallback={<Skeleton className="h-[166px] w-full" />}>
         <BalanceCard />
       </Suspense>
@@ -51,7 +51,7 @@ async function BalanceCard() {
             </p>
           </div>
 
-          <CoinsIcon
+          <CreditCardIcon
             size={140}
             className="text-primary opacity-20 absolute bottom-0 right-0"
           />
