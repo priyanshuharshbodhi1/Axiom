@@ -120,7 +120,7 @@ export default function MarketplacePage() {
                 </CardContent>
                 <CardFooter className="flex justify-between items-center">
                   <span className="text-2xl font-bold">${workflow.price}</span>
-                  <Button>Purchase</Button>
+                  <Button>Available for Purchase Soon</Button>
                 </CardFooter>
               </Card>
             ))}
