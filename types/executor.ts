@@ -17,6 +17,7 @@ export type Environment = {
 };
 
 export type ExecutionEnvironment<T extends WorkflowTask> = {
+  executionId: string;
   getInput(name: T["inputs"][number]["name"]): string;
   setOutput(name: T["outputs"][number]["name"], value: string): void;
   getPlugin(): string[];
