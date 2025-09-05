@@ -1,0 +1,24 @@
+---
+name: "Auto Test React Components"
+description: "Automatically run tests when React components are modified"
+trigger:
+  type: "file_changed"
+  patterns:
+    - "components/**/*.{ts,tsx}"
+    - "app/**/*.{ts,tsx}"
+enabled: true
+---
+
+When a React component file is saved, automatically:
+
+1. Run unit tests for the modified component
+2. Check for TypeScript errors and type safety
+3. Validate component props and hooks usage
+4. Ensure accessibility standards are met
+5. Run integration tests if component has external dependencies
+
+Focus on:
+- Testing component behavior, not implementation details
+- Mocking external APIs (CoinGecko, 1inch) appropriately
+- Validating React Flow node components work correctly
+- Checking drag-and-drop functionality in workflow builder

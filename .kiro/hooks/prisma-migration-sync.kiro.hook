@@ -1,0 +1,24 @@
+---
+name: "Prisma Schema Sync"
+description: "Auto-generate migrations and sync database schema changes"
+trigger:
+  type: "file_changed" 
+  patterns:
+    - "prisma/schema.prisma"
+enabled: true
+---
+
+When the Prisma schema is modified:
+
+1. Generate a new migration file with descriptive name
+2. Validate schema changes for breaking modifications
+3. Check for data loss scenarios and warn if detected
+4. Update TypeScript types from Prisma client
+5. Run migration against development database
+6. Verify all existing queries still work with new schema
+
+Key considerations for Axiom.ai:
+- Workflow execution data must remain intact during schema changes
+- User authentication and session data compatibility
+- API endpoint response types stay consistent
+- Database indexes are optimized for workflow queries

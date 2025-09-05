@@ -1,0 +1,25 @@
+---
+name: "Pre-merge Build Validation"
+description: "Comprehensive build checks before merging to main branch"
+trigger:
+  type: "manual"
+  command: "pre-merge"
+enabled: true
+---
+
+Before merging any branch to main:
+
+1. Run complete Next.js build process
+2. Execute full test suite (unit + integration)
+3. Check TypeScript compilation with strict mode
+4. Validate ESLint rules and code formatting
+5. Verify environment variables are properly configured
+6. Test critical API endpoints (auth, workflows, trading)
+7. Check bundle size hasn't increased significantly
+
+Specific validation for Axiom.ai:
+- React Flow workflow builder renders correctly
+- CoinGecko and 1inch API integrations work
+- Wallet connection and authentication flows
+- Database migrations applied successfully
+- Vercel deployment configuration is valid
