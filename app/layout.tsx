@@ -33,11 +33,14 @@ export default function RootLayout({
       appearance={{
         layout: {
           socialButtonsPlacement: "top",
-          socialButtonsVariant: "blockButton",
+          socialButtonsVariant: "iconButton",
         },
         elements: {
           formButtonPrimary:
             "bg-primary hover:bg-primary/90 text-sm !shadow-none",
+          socialButtons: "flex flex-wrap gap-2 justify-center",
+          socialButtonsBlockButton: "flex-1 min-w-[120px]",
+          socialButtonsIconButton: "w-12 h-12 min-w-[48px]",
         },
       }}
     >
