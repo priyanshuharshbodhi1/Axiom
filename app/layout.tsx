@@ -38,9 +38,9 @@ export default function RootLayout({
         elements: {
           formButtonPrimary:
             "bg-primary hover:bg-primary/90 text-sm !shadow-none",
-          socialButtons: "flex flex-wrap gap-2 justify-center",
-          socialButtonsBlockButton: "flex-1 min-w-[120px]",
-          socialButtonsIconButton: "w-12 h-12 min-w-[48px]",
+          socialButtons: "flex gap-3 justify-center items-center",
+          socialButtonsIconButton: "w-10 h-10 rounded-full border border-gray-200 hover:border-gray-300 transition-colors",
+          socialButtonsProviderIcon: "w-5 h-5",
         },
       }}
     >
