@@ -12,13 +12,7 @@ export const metadata: Metadata = {
   title: "Axiom",
   description: "AI-powered DeFi workflow automation.",
   icons: {
-    icon: [
-      {
-        url: "https://api.iconify.design/tabler/circuit-ai.svg",
-        rel: "icon",
-        type: "image/svg+xml",
-      },
-    ],
+    icon: "/icon.png",
   },
 };
 
