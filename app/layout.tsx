@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description: "AI-powered DeFi workflow automation.",
   icons: {
     icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 

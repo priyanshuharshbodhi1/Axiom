@@ -306,10 +306,10 @@ async function decrementCredits(
   logCollector: LogCollector
 ) {
   try {
-    // await prisma.userBalance.update({
-    //   where: { userId, credits: { gte: amount } },
-    //   data: { credits: { decrement: amount } },
-    // });
+    await prisma.userBalance.update({
+      where: { userId, credits: { gte: amount } },
+      data: { credits: { decrement: amount } },
+    });
     return true;
   } catch (error) {
     logCollector.error("insufficient balance");

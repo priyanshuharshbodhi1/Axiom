@@ -1,13 +1,13 @@
 import { chainList } from "@/lib/chains";
 import { TaskParamType, TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
-import { LucideProps, Brain } from "lucide-react";
+import { LucideProps, Bot } from "lucide-react";
 
 export const AgentTask = {
   type: TaskType.AGENT,
   label: "Axiom Agent",
   icon: (props: LucideProps) => (
-    <Brain className="stroke-rose-400" {...props} />
+    <Bot className="stroke-blue-500" {...props} />
   ),
   isEntryPoint: false,
   isAgent: true,

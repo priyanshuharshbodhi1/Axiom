@@ -1,6 +1,4 @@
 import { ExecutionEnvironment } from "@/types/executor";
-import { generateText } from "ai";
-import { google } from '@ai-sdk/google';
 import prisma from "@/lib/prisma";
 import { symmetricDecrypt } from "@/lib/encryption";
 import { TelegramTask } from "@/lib/workflow/task/TelegramTask";

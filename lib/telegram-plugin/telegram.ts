@@ -40,6 +40,9 @@ async function sendMessage(
     message: string
 ) {
     try {
+        console.log(`Attempting to send message to Telegram API: ${telegramUrl}`);
+        console.log(`Chat ID: ${chatId}`);
+        
         const response = await fetch(telegramUrl, {
             method: 'POST',
             headers: {
@@ -51,20 +54,27 @@ async function sendMessage(
             }),
         });
 
+        console.log(`Response status: ${response.status}`);
+        
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`Telegram API error: ${errorText}`);
             return {
-                error: 'Failed to send message',
+                error: `Failed to send message: ${response.status} - ${errorText}`,
             }
         }
 
-        if (response.status === 200) {
-            return {
-                success: 'Message sent successfully',
-            }
-        }
-    } catch {
+        const responseData = await response.json();
+        console.log('Message sent successfully:', responseData);
+        
         return {
-            error: 'Failed to send message',
+            success: 'Message sent successfully',
+            data: responseData
+        }
+    } catch (error: any) {
+        console.error('Fetch error:', error.message);
+        return {
+            error: `Network error: ${error.message}`,
         }
     }
 }

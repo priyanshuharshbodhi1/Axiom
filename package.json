@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^1.1.13",
+    "@ai-sdk/groq": "^1.0.0",
     "@ai-sdk/openai": "^1.1.11",
     "@clerk/nextjs": "^5.3.3",
     "@dao-xyz/borsh": "^5.2.3",
@@ -73,7 +74,6 @@
     "next": "14.2.5",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^1.6.12",
-    "openai": "^4.56.1",
     "puppeteer": "^23.1.1",
     "react": "^18",
     "react-countup": "^6.5.3",

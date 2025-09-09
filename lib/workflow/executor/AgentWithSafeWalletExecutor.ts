@@ -72,8 +72,8 @@ export async function AgentWithSafeWalletExecutor(
     environment.log.info(`Messages: ${message}`);
 
     const response = await generateText({
-      model: google('gemini-2.0-flash-001'),
-      tools: tools,
+      model: google('gemini-1.5-flash'),
+      tools: tools as any,
       maxSteps: 5,
       messages: [
         { role: 'system', content: systemPrompt },

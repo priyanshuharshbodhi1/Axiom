@@ -49,13 +49,28 @@ export async function TelegramAgentExecutor(
       return false;
     }
 
+    environment.log.info(`Bot token length: ${decryptedBotToken.length}`);
+    environment.log.info(`Chat ID: ${chatId}`);
+
+    // Validate bot token format (should be like 123456789:ABC-DEF...)
+    if (!decryptedBotToken.includes(':') || decryptedBotToken.length < 45) {
+      environment.log.error("Invalid bot token format");
+      return false;
+    }
+
+    // Validate chat ID (should be numeric or start with @ for username)
+    if (!chatId || (!/^-?\d+$/.test(chatId) && !chatId.startsWith('@'))) {
+      environment.log.error("Invalid chat ID format");
+      return false;
+    }
+
     const message = context ? "Context: " + context + "\n\n" + "Prompt: " + prompt : "Prompt: " + prompt;
 
     environment.log.info(`Messages: ${message}`);
 
     const response = await generateText({
-      model: google('gemini-2.0-flash-001'),
-      tools: { ...telegramTools({ botToken: decryptedBotToken, chatId }) },
+      model: google('gemini-1.5-flash'),
+      tools: { ...telegramTools({ botToken: decryptedBotToken, chatId }) } as any,
       maxSteps: 10,
       messages: [
         { role: 'system', content: systemPrompt },

@@ -1,3 +1,35 @@
 {
-    "kiroAgent.configureMCP": "Disabled"
+    "kiroAgent.configureMCP": "Disabled",
+    "typescript.preferences.includePackageJsonAutoImports": "off",
+    "typescript.validate.enable": true,
+    "@typescript-eslint/no-unused-vars": "warn",
+    "problems.decorations.enabled": true,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "meta.object-literal.key.js string.quoted.double.js",
+                "settings": {
+                    "foreground": "#9CDCFE"
+                }
+            }
+        ]
+    },
+    "editor.semanticTokenColorCustomizations": {
+        "rules": {
+            "*.unused": {
+                "foreground": "#808080",
+                "fontStyle": "italic"
+            }
+        }
+    },
+    "eslint.rules.customizations": [
+        {
+            "rule": "@typescript-eslint/no-unused-vars",
+            "severity": "warn"
+        },
+        {
+            "rule": "no-unused-vars", 
+            "severity": "warn"  
+        }
+    ]
 }

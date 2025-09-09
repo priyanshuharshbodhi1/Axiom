@@ -2,7 +2,8 @@ import { symmetricDecrypt } from "@/lib/encryption";
 import prisma from "@/lib/prisma";
 import { ExtractDataWithAITask } from "@/lib/workflow/task/ExtractDataWithAI";
 import { ExecutionEnvironment } from "@/types/executor";
-import OpenAI from "openai";
+import { generateText } from "ai";
+import { google } from '@ai-sdk/google';
 
 export async function ExtractDataWithAiExecutor(
   environment: ExecutionEnvironment<typeof ExtractDataWithAITask>
@@ -23,28 +24,8 @@ export async function ExtractDataWithAiExecutor(
       environment.log.error("input->content not defined");
     }
 
-    // Get credentials from DB
-    const credential = await prisma.credential.findUnique({
-      where: { id: credentials },
-    });
-
-    if (!credential) {
-      environment.log.error("credential not found");
-      return false;
-    }
-
-    const plainCredentialValue = symmetricDecrypt(credential.value);
-    if (!plainCredentialValue) {
-      environment.log.error("cannot decrypt credential");
-      return false;
-    }
-
-    const openai = new OpenAI({
-      apiKey: plainCredentialValue,
-    });
-
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const response = await generateText({
+      model: google('gemini-1.5-flash'),
       messages: [
         {
           role: "system",
@@ -57,15 +38,9 @@ export async function ExtractDataWithAiExecutor(
         },
         { role: "user", content: prompt },
       ],
-      temperature: 1,
     });
 
-    environment.log.info(`Prompt tokens: ${response.usage?.prompt_tokens}`);
-    environment.log.info(
-      `Completition tokens: ${response.usage?.completion_tokens}`
-    );
-
-    const result = response.choices[0].message?.content;
+    const result = response.text;
     if (!result) {
       environment.log.error("empty response from AI");
       return false;
