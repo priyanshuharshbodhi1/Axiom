@@ -38,7 +38,6 @@ Axiom.ai was developed using [Kiro](https://kiro.dev/), an AI-powered IDE that a
 
 - **[Complete Kiro Usage Documentation](How_Kiro_Was_Used_to_Build_the_Project.md)**: Detailed explanation of how Kiro was used throughout development
 - **[Kiro Development Context](.kiro/README.md)**: Overview of all steering files, specifications, and automation hooks
-- **[Development Process](.kiro/ALIGNMENT_SUMMARY.md)**: Summary of our spec-driven development approach with Kiro
 
 ## Getting Started
 

@@ -14,7 +14,7 @@ Kiro was especially helpful as the project started growing in complexity.
 **What was the most impressive code generation Kiro helped you with?**
 
 ### 📝 Spec First
-For each feature (like the **workflow builder node**, **price-feed monitor**, or **trade trigger logic**), we wrote a **spec in Kiro** describing:
+For each feature (like the **React Flow workflow builder**, **GOAT SDK integrations**, or **multi-chain DeFi automation**), we wrote a **spec in Kiro** describing:
 
 - Purpose  
 - Inputs & outputs  
@@ -26,7 +26,7 @@ This ensured clarity across the whole team.
 ### ⚡ Then Vibe Coding
 We would then prompt Kiro conversationally, like:
 
-> "Build a React Flow node that listens to CoinGecko and triggers a 1-inch swap if price jumps X%."
+> "Build a React Flow node system that integrates GOAT SDK plugins for CoinGecko price monitoring and 1inch DEX aggregation with AI-powered decision making."
 
 Kiro would generate the first version, and then we would **iteratively refine** — UI layout → logic → edge cases.
 
@@ -47,10 +47,10 @@ It also generated **backend endpoints** for multiple data sources + **mock integ
 
 We used **Kiro agent hooks** to automate critical parts of our workflow:
 
-- 🧪 **Pre-merge hook** – ran unit & integration tests for frontend and backend on each pull request  
-- 🗃️ **Schema sync hook** – auto-generated Prisma migrations, applied them to the dev DB, and ensured schema consistency  
-- 🚀 **Preview deployment hook** – deployed feature branches to Vercel preview environments for visual testing  
-- 🧹 **Build & lint hook** – checked formatting, type safety, and unused imports before merging
+- 🧪 **Auto-test on save hook** – automatically ran unit tests for React components and validated TypeScript errors when files were modified
+- 🗃️ **Prisma migration sync hook** – auto-generated database migrations, validated schema changes, and ensured data integrity  
+- 🚀 **Build validation hook** – comprehensive pre-merge checks including Next.js build validation, ESLint, and API endpoint testing
+- 🧹 **Component testing hook** – generated unit tests for new React components using Jest and React Testing Library
 
 **Impact:**  
 These hooks meant **fewer broken builds**, **less manual effort**, and **more confidence when merging**.  
@@ -71,17 +71,30 @@ Each spec included:
 - Data models  
 - UI components & interactions  
 - Error handling  
-- Protocols/data sources to use (like CoinGecko, 1inch, etc.)  
+- GOAT SDK plugin integrations (CoinGecko, 1inch, DexScreener, Birdeye, Polymarket)
+- Blockchain protocols (EVM networks, NEAR Protocol)  
 - Acceptance criteria and mockups/flow diagrams
 
 Kiro used these specs to generate **scaffolded modules** with:
 
-- Folder structure  
-- API routes  
-- Type definitions  
-- Frontend component stubs  
+- Next.js 14 App Router structure
+- tRPC API routes with Zod validation
+- TypeScript interfaces for GOAT SDK plugins
+- React Flow node components with proper typing
+- Prisma schema definitions
+- Stripe billing integration stubs
 
-— all conforming to our architecture.
+— all conforming to our Next.js + TypeScript + Prisma architecture.
+
+### 📋 Key Specifications Created
+Our `.kiro/specs/` directory contains the core specifications that guided development:
+
+- **[Workflow Builder Spec](/.kiro/specs/workflow-builder-spec.md)**: Complete visual drag-and-drop interface using React Flow
+- **[React Flow Nodes](/.kiro/specs/react-flow-nodes.md)**: Node-based system for DeFi workflow automation 
+- **[GOAT SDK Integration](/.kiro/specs/goat-sdk-integration.md)**: AI-powered DeFi automation with comprehensive plugin architecture
+- **[External API Integration](/.kiro/specs/external-api-integration.md)**: CoinGecko, 1inch, and multi-source data connectivity
+
+These specs enabled Kiro to understand our complex requirements and generate production-ready code that matched our exact architectural needs.
 
 ### ⚡ Benefits of Spec-Driven Development
 - ✅ Reduced miscommunication — frontend & backend had aligned expectations  
@@ -91,5 +104,20 @@ Kiro used these specs to generate **scaffolded modules** with:
 
 ---
 
+### 🎯 Development Timeline with Kiro
+
+Our Kiro integration evolved organically throughout the project:
+
+- **Aug 28**: Established foundational [steering files](/.kiro/steering/) defining our product vision, tech stack, and architecture
+- **Aug 29 - Sep 2**: Created detailed specifications for workflow builder and React Flow node system
+- **Sep 5**: Implemented automation hooks for testing, migration sync, and build validation
+- **Sep 8**: Added external API integration specs for CoinGecko and 1inch
+- **Sep 10**: Developed GOAT SDK integration specification for AI-powered automation
+- **Sep 12**: Documented complete Kiro development context and methodology
+
+This timeline shows how Kiro wasn't an afterthought — it was integral to our development process from day one.
+
+---
+
 📌 **Summary**  
-Kiro became like an **AI teammate** — handling the scaffolding, setup, and checks — so we could focus on solving hard problems and building Axiom.ai faster.
+Kiro became like an **AI teammate** — handling the scaffolding, setup, and checks — so we could focus on solving hard problems and building Axiom.ai faster. The combination of spec-driven development, intelligent automation hooks, and context-aware code generation enabled us to build a sophisticated DeFi automation platform with unprecedented speed and quality.
