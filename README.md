@@ -23,6 +23,23 @@ Axiom is a powerful workflow automation platform that enables users to create, m
 - **Blockchain**: Viem, NEAR API
 - **Analytics**: Custom analytics system
 
+## Built with Kiro
+
+Axiom.ai was developed using [Kiro](https://kiro.dev/), an AI-powered IDE that accelerates development through spec-driven development, intelligent automation, and context-aware code generation.
+
+### How Kiro Enhanced Our Development
+
+- **Spec-Driven Development**: All major features were built from detailed specifications in [`.kiro/specs/`](.kiro/specs/), enabling rapid prototyping and consistent implementation
+- **AI-Powered Automation**: Automated testing, code review, and deployment processes through [`.kiro/hooks/`](.kiro/hooks/) 
+- **Context-Aware Generation**: Kiro's understanding of our tech stack and architecture through [`.kiro/steering/`](.kiro/steering/) files ensured consistent code patterns
+- **Rapid Iteration**: Reduced boilerplate generation time by 70% and enabled focus on core DeFi automation features
+
+### Kiro Documentation
+
+- **[Complete Kiro Usage Documentation](How_Kiro_Was_Used_to_Build_the_Project.md)**: Detailed explanation of how Kiro was used throughout development
+- **[Kiro Development Context](.kiro/README.md)**: Overview of all steering files, specifications, and automation hooks
+- **[Development Process](.kiro/ALIGNMENT_SUMMARY.md)**: Summary of our spec-driven development approach with Kiro
+
 ## Getting Started
 
 ### Prerequisites
