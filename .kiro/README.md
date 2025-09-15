@@ -6,21 +6,22 @@ This `.kiro` directory contains the complete development context for Axiom.ai, e
 
 ```
 .kiro/
-├── steering/           # Persistent project knowledge for Kiro
-│   ├── product.md      # Product vision, users, and objectives
-│   ├── tech.md         # Technology stack and frameworks
-│   ├── structure.md    # Project organization and conventions  
-│   ├── api-standards.md # REST API patterns and validation
-│   └── deployment-workflow.md # Deployment and monitoring setup
-├── specs/              # Feature specifications and requirements
+├── steering/                    # Persistent project knowledge for Kiro
+│   ├── product.md               # Product vision, users, and objectives
+│   ├── tech.md                  # Technology stack and frameworks
+│   ├── structure.md             # Project organization and conventions  
+│   ├── api-standards.md         # REST API patterns and validation
+│   └── deployment-workflow.md   # Deployment and monitoring setup
+├── specs/                       # Feature specifications and requirements
 │   ├── workflow-builder-spec.md # Visual workflow builder requirements
-│   └── external-api-integration.md # CoinGecko/1inch API specs
-└── README.md           # This documentation file
-
-.hooks/                 # Automation hooks for development workflow
-├── pre-commit-test.json      # Code quality and testing hooks
-├── build-validation.json     # Build and dependency validation
-└── deployment-monitoring.json # Deployment and performance hooks
+│   ├── external-api-integration.md # CoinGecko/1inch API specs
+│   ├── react-flow-nodes.md      # Node system for workflow automation
+│   └── goat-sdk-integration.md  # AI-powered DeFi automation via GOAT SDK
+├── hooks/                       # Kiro automation hooks (.kiro.hook files)
+│   ├── auto-test-on-save.kiro.hook
+│   ├── build-validation.kiro.hook
+│   └── prisma-migration-sync.kiro.hook
+└── README.md                    # This documentation file
 ```
 
 ## How Kiro Uses This Context
@@ -41,7 +42,7 @@ Detailed feature specifications that guide implementation:
 - **User stories** that maintain focus on user value and experience
 - **Phase-based implementation** breaking complex features into manageable tasks
 
-### Automation Hooks (`/.hooks/`)
+### Automation Hooks (`/hooks/`)
 Intelligent triggers that respond to development events:
 
 - **Code quality enforcement** through automated linting and validation

@@ -78,7 +78,7 @@ Each spec included:
 Kiro used these specs to generate **scaffolded modules** with:
 
 - Next.js 14 App Router structure
-- tRPC API routes with Zod validation
+- Next.js API routes (or server actions) with Zod validation
 - TypeScript interfaces for GOAT SDK plugins
 - React Flow node components with proper typing
 - Prisma schema definitions
